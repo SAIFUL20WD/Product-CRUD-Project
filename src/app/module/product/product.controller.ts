@@ -2,10 +2,6 @@ import { Request, Response } from "express";
 import { ProductServices } from "./product.service";
 import productValidationSchema from "./product.validation";
 
-type error = {
-    message: string;
-};
-
 const createProduct = async (req: Request, res: Response) => {
     try {
         const productData = req.body;
