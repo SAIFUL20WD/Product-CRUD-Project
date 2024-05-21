@@ -22,11 +22,19 @@ const getAllProducts = async (req: Request, res: Response) => {
         const searchTerm = req?.query?.searchTerm;
         if (searchTerm) {
             const result = await ProductServices.getProductsByQueryFromDB(searchTerm as string);
-            res.status(200).json({
-                success: true,
-                message: `Products matching search term '${searchTerm}' fetched successfully!`,
-                data: result,
-            });
+            if (result.length === 0) {
+                res.status(404).json({
+                    success: false,
+                    message: `No product found!`,
+                    data: result,
+                });
+            } else {
+                res.status(200).json({
+                    success: true,
+                    message: `Products matching search term '${searchTerm}' fetched successfully!`,
+                    data: result,
+                });
+            }
         } else {
             const result = await ProductServices.getAllProductsFromDB();
             res.status(200).json({

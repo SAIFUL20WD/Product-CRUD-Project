@@ -4,6 +4,7 @@
   "description": "simple crud project using typescript, express, mongoose, zod",
   "main": "./dist/server.js",
   "scripts": {
+    "start": "node ./dist/server.js",
     "start:prod": "node ./dist/server.js",
     "start:dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",

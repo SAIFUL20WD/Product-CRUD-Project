@@ -27,7 +27,8 @@ const deleteProductByIdFromDB = async (id: string) => {
 };
 
 const getProductsByQueryFromDB = async (searchTerm: string) => {
-    const result = await ProductModel.find({ $text: { $search: searchTerm } });
+    // const result = await ProductModel.find({ $text: { $search: searchTerm } });
+    const result = await ProductModel.find({ name: new RegExp(searchTerm, "i") });
     return result;
 };
 
