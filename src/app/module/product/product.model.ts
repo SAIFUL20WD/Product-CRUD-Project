@@ -11,15 +11,18 @@ const inventorySchema = new Schema<TInventory>({
     inStock: { type: Boolean, required: true },
 });
 
-const productSchema = new Schema<TProduct>({
-    name: { type: String, required: true },
-    description: { type: String, required: true },
-    price: { type: Number, required: true },
-    category: { type: String, required: true },
-    tags: { type: [String], required: true },
-    variants: { type: [variantSchema], required: true },
-    inventory: { type: inventorySchema, required: true },
-});
+const productSchema = new Schema<TProduct>(
+    {
+        name: { type: String, required: true },
+        description: { type: String, required: true },
+        price: { type: Number, required: true },
+        category: { type: String, required: true },
+        tags: { type: [String], required: true },
+        variants: { type: [variantSchema], required: true },
+        inventory: { type: inventorySchema, required: true },
+    },
+    { timestamps: true, versionKey: false },
+);
 
 const ProductModel = model("product", productSchema);
 
