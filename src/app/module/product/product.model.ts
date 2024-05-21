@@ -24,6 +24,8 @@ const productSchema = new Schema<TProduct>(
     { timestamps: true, versionKey: false },
 );
 
+productSchema.index({ name: "text" });
+
 const ProductModel = model("product", productSchema);
 
 export default ProductModel;
