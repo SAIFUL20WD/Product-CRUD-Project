@@ -2,13 +2,9 @@ import { z } from "zod";
 
 const variantValidationSchema = z.array(
     z.object({
-        type: z
-            .string()
-            .trim()
-            .min(5, { message: "type must be more than 5 character" })
-            .max(50, {
-                message: "type must be less than 50 character",
-            }),
+        type: z.string().trim().min(5, { message: "type must be more than 5 character" }).max(50, {
+            message: "type must be less than 50 character",
+        }),
         value: z
             .string()
             .trim()

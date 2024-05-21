@@ -17,11 +17,7 @@ const getProductByIdFromDB = async (id: string) => {
 };
 
 const updateProductByIdToDB = async (id: string, productData: TProduct) => {
-    const result = await ProductModel.findOneAndUpdate(
-        { _id: id },
-        productData,
-        { new: true },
-    );
+    const result = await ProductModel.findOneAndUpdate({ _id: id }, productData, { new: true });
     return result;
 };
 
@@ -35,6 +31,16 @@ const getProductsByQueryFromDB = async (searchTerm: string) => {
     return result;
 };
 
+const getProductQuantityFromDB = async (id: string) => {
+    const result = await ProductModel.findById({ _id: id }, { inventory: 1, _id: 0 });
+    return result?.inventory?.quantity || 0;
+};
+
+const updateProductInventoryToDB = async (id: string, updatedInventoryData: object) => {
+    const result = await ProductModel.findOneAndUpdate({ _id: id }, { $set: { inventory: updatedInventoryData } });
+    return result;
+};
+
 export const ProductServices = {
     createProductToDB,
     getAllProductsFromDB,
@@ -42,4 +48,6 @@ export const ProductServices = {
     updateProductByIdToDB,
     deleteProductByIdFromDB,
     getProductsByQueryFromDB,
+    getProductQuantityFromDB,
+    updateProductInventoryToDB,
 };

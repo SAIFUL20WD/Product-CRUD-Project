@@ -6,15 +6,14 @@ const createProduct = async (req: Request, res: Response) => {
     try {
         const productData = req.body;
         const zodValidatedData = productValidationSchema.parse(productData);
-        const result =
-            await ProductServices.createProductToDB(zodValidatedData);
+        const result = await ProductServices.createProductToDB(zodValidatedData);
         res.status(200).json({
             success: true,
-            result: "Product created successfully!",
+            message: "Product created successfully!",
             data: result,
         });
     } catch (err) {
-        res.status(500).json({ success: false, error: err });
+        res.status(500).json({ success: false, message: err });
     }
 };
 
@@ -22,24 +21,22 @@ const getAllProducts = async (req: Request, res: Response) => {
     try {
         const searchTerm = req?.query?.searchTerm;
         if (searchTerm) {
-            const result = await ProductServices.getProductsByQueryFromDB(
-                searchTerm as string,
-            );
+            const result = await ProductServices.getProductsByQueryFromDB(searchTerm as string);
             res.status(200).json({
                 success: true,
-                result: `Products matching search term '${searchTerm}' fetched successfully!`,
+                message: `Products matching search term '${searchTerm}' fetched successfully!`,
                 data: result,
             });
         } else {
             const result = await ProductServices.getAllProductsFromDB();
             res.status(200).json({
                 success: true,
-                result: "Products fetched successfully!",
+                message: "Products fetched successfully!",
                 data: result,
             });
         }
     } catch (err) {
-        res.status(500).json({ success: false, error: err });
+        res.status(500).json({ success: false, message: err });
     }
 };
 
@@ -49,11 +46,11 @@ const getProductById = async (req: Request, res: Response) => {
         const result = await ProductServices.getProductByIdFromDB(id);
         res.status(200).json({
             success: true,
-            result: "Product fetched successfully!",
+            message: "Product fetched successfully!",
             data: result,
         });
     } catch (err) {
-        res.status(500).json({ success: false, error: err });
+        res.status(500).json({ success: false, message: err });
     }
 };
 
@@ -62,17 +59,14 @@ const updateProductById = async (req: Request, res: Response) => {
         const id = req.params.productId;
         const productData = req.body;
         const zodValidatedData = productValidationSchema.parse(productData);
-        const result = await ProductServices.updateProductByIdToDB(
-            id,
-            zodValidatedData,
-        );
+        const result = await ProductServices.updateProductByIdToDB(id, zodValidatedData);
         res.status(200).json({
             success: true,
-            result: "Product updated successfully!",
+            message: "Product updated successfully!",
             data: result,
         });
     } catch (err) {
-        res.status(500).json({ success: false, error: err });
+        res.status(500).json({ success: false, message: err });
     }
 };
 
@@ -82,11 +76,11 @@ const deleteProductById = async (req: Request, res: Response) => {
         const result = await ProductServices.deleteProductByIdFromDB(id);
         res.status(200).json({
             success: true,
-            result: "Product deleted successfully!",
+            message: "Product deleted successfully!",
             data: null,
         });
     } catch (err) {
-        res.status(500).json({ success: false, error: err });
+        res.status(500).json({ success: false, message: err });
     }
 };
 
