@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { ProductServices } from "./product.service";
+import productValidationSchema from "./product.validation";
 
 type error = {
     message: string;
@@ -8,7 +9,9 @@ type error = {
 const createProduct = async (req: Request, res: Response) => {
     try {
         const productData = req.body;
-        const result = await ProductServices.createProductToDB(productData);
+        const zodValidatedData = productValidationSchema.parse(productData);
+        const result =
+            await ProductServices.createProductToDB(zodValidatedData);
         res.status(200).json({
             success: true,
             result: "Product created successfully!",
