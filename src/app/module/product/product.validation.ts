@@ -5,13 +5,9 @@ const variantValidationSchema = z.array(
         type: z.string().trim().min(5, { message: "type must be more than 5 character" }).max(50, {
             message: "type must be less than 50 character",
         }),
-        value: z
-            .string()
-            .trim()
-            .min(5, { message: "value must be more than 5 character" })
-            .max(50, {
-                message: "value must be less than 50 character",
-            }),
+        value: z.string().trim().min(5, { message: "value must be more than 5 character" }).max(50, {
+            message: "value must be less than 50 character",
+        }),
     }),
 );
 
