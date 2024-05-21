@@ -29,6 +29,6 @@ Welcome to the **Product CRUD Server** project! This repository contains the ser
     npm run start:dev
     ```
 
-    The server will be running at **`http://localhost:5000`** .
+    The server will be running at **`http://localhost:5000`**
 
-#### Postman API Documentation: URL will be added
+#### Postman API Documentation: import Product CRUD Project.postman_colllection.json file into Postman
