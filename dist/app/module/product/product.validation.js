@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const zod_1 = require("zod");
 const variantValidationSchema = zod_1.z.array(zod_1.z.object({
-    type: zod_1.z.string().trim().min(5, { message: "type must be more than 5 character" }).max(50, {
+    type: zod_1.z.string().trim().min(3, { message: "type must be more than 3 character" }).max(50, {
         message: "type must be less than 50 character",
     }),
-    value: zod_1.z.string().trim().min(5, { message: "value must be more than 5 character" }).max(50, {
+    value: zod_1.z.string().trim().min(3, { message: "value must be more than 3 character" }).max(50, {
         message: "value must be less than 50 character",
     }),
 }));
@@ -28,8 +28,8 @@ const productValidationSchema = zod_1.z.object({
     category: zod_1.z
         .string()
         .trim()
-        .min(3, { message: "Description must be more than 3 character" })
-        .max(30, { message: "Description must be less than 30 character" }),
+        .min(3, { message: "Category must be more than 3 character" })
+        .max(30, { message: "Category must be less than 30 character" }),
     tags: zod_1.z.array(zod_1.z.string()).nonempty().min(1).max(10),
     variants: variantValidationSchema,
     inventory: inventoryValidationSchema,

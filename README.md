@@ -31,4 +31,4 @@ Welcome to the **Product CRUD Server** project! This repository contains the ser
 
     The server will be running at **`http://localhost:5000`**
 
-#### Postman API Documentation: import Product CRUD Project.postman_colllection.json file into Postman
+#### Postman API: import Product CRUD Project.postman_colllection.json file into Postman

@@ -10,7 +10,7 @@ const inventorySchema = new mongoose_1.Schema({
     inStock: { type: Boolean, required: true },
 });
 const productSchema = new mongoose_1.Schema({
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     description: { type: String, required: true },
     price: { type: Number, required: true },
     category: { type: String, required: true },
@@ -18,6 +18,6 @@ const productSchema = new mongoose_1.Schema({
     variants: { type: [variantSchema], required: true },
     inventory: { type: inventorySchema, required: true },
 }, { timestamps: true, versionKey: false });
-productSchema.index({ name: "text" });
+// productSchema.index({ name: "text" });
 const ProductModel = (0, mongoose_1.model)("product", productSchema);
 exports.default = ProductModel;

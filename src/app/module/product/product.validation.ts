@@ -2,10 +2,10 @@ import { z } from "zod";
 
 const variantValidationSchema = z.array(
     z.object({
-        type: z.string().trim().min(5, { message: "type must be more than 5 character" }).max(50, {
+        type: z.string().trim().min(3, { message: "type must be more than 3 character" }).max(50, {
             message: "type must be less than 50 character",
         }),
-        value: z.string().trim().min(5, { message: "value must be more than 5 character" }).max(50, {
+        value: z.string().trim().min(3, { message: "value must be more than 3 character" }).max(50, {
             message: "value must be less than 50 character",
         }),
     }),
@@ -31,8 +31,8 @@ const productValidationSchema = z.object({
     category: z
         .string()
         .trim()
-        .min(3, { message: "Description must be more than 3 character" })
-        .max(30, { message: "Description must be less than 30 character" }),
+        .min(3, { message: "Category must be more than 3 character" })
+        .max(30, { message: "Category must be less than 30 character" }),
     tags: z.array(z.string()).nonempty().min(1).max(10),
     variants: variantValidationSchema,
     inventory: inventoryValidationSchema,

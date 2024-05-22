@@ -13,7 +13,7 @@ const inventorySchema = new Schema<TInventory>({
 
 const productSchema = new Schema<TProduct>(
     {
-        name: { type: String, required: true },
+        name: { type: String, required: true, unique: true },
         description: { type: String, required: true },
         price: { type: Number, required: true },
         category: { type: String, required: true },
@@ -24,7 +24,7 @@ const productSchema = new Schema<TProduct>(
     { timestamps: true, versionKey: false },
 );
 
-productSchema.index({ name: "text" });
+// productSchema.index({ name: "text" });
 
 const ProductModel = model("product", productSchema);
 
